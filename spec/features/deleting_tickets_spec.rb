@@ -12,4 +12,3 @@ feature "Users can delete a ticket" do
     expect(page.current_url).to eq project_url(project)
   end
 end
-
