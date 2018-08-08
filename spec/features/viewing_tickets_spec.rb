@@ -2,13 +2,16 @@ require 'rails_helper'
 
 feature "Users can view tickets" do
   scenario "with valid attributes" do
+    author = FactoryGirl.create(:user)
+    login_as(author)
+
     neovim = FactoryGirl.create(:project, name: "neovim")
-    FactoryGirl.create(:ticket, project: neovim,
+    FactoryGirl.create(:ticket, project: neovim, author: author,
                                 name: 'Make the codebase better',
                                 description: 'Refactor the monolith.')
 
     ie = FactoryGirl.create(:project, name: "ie")
-    FactoryGirl.create(:ticket, project: ie,
+    FactoryGirl.create(:ticket, project: ie, author: author,
                                 name: "Standards compliance",
                                 description: "Isn't a joke.")
 

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature "Users can create new tickets" do
   scenario "with valid attributes" do
+    user = FactoryGirl.create(:user)
+    login_as(user)
     project = FactoryGirl.create(:project, name: "Internet Explorer")
 
     visit project_path(project)
@@ -11,6 +13,9 @@ feature "Users can create new tickets" do
     click_button 'Create Ticket'
 
     expect(page).to have_content "Ticket has been successfully created."
+    within('#ticket') do
+      expect(page).to have_content "Author: #{user.email}"
+    end
   end
 
   scenario 'when providing invalid attributes' do

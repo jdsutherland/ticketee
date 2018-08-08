@@ -8,6 +8,8 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = @project.tickets.build(ticket_params)
+    # TODO: this blows up if not logged in - use 'Null Object'
+    @ticket.author = current_user
 
     if @ticket.save
       flash[:notice] = "Ticket has been successfully created."

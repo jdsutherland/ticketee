@@ -1,13 +1,14 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome";
-@import "projects";
-@import "responsive";
+@import 'bootstrap';
+@import 'bootstrap-sprockets';
+@import 'font-awesome';
+@import 'projects';
+@import 'responsive';
+@import 'tickets';
 
 header {
   @extend .page-header;
+  padding-bottom: 0;
   position: relative;
-  padding-bottom: 0px;
 
   &:first-child {
     margin-top: 20px;

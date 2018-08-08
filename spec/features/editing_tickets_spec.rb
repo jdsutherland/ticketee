@@ -2,8 +2,11 @@ require 'rails_helper'
 
 feature "Users can edit existing tickets" do
   scenario 'with valid attributes' do
+    author = FactoryGirl.create(:user)
+    login_as(author)
     project = FactoryGirl.create(:project)
-    ticket = FactoryGirl.create(:ticket, project: project)
+    ticket = FactoryGirl.create(:ticket, project: project, author: author)
+
 
     visit project_ticket_path(project, ticket)
     click_link 'Edit Ticket'
@@ -18,8 +21,10 @@ feature "Users can edit existing tickets" do
   end
 
   scenario 'with invalid attributes' do
+    author = FactoryGirl.create(:user)
+    login_as(author)
     project = FactoryGirl.create(:project)
-    ticket = FactoryGirl.create(:ticket, project: project)
+    ticket = FactoryGirl.create(:ticket, project: project, author: author)
 
     visit project_ticket_path(project, ticket)
     click_link 'Edit Ticket'
