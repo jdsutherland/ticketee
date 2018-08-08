@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature "Users can create new projects" do
   scenario "with valid attributes" do
-    visit "/"
     login_as(FactoryGirl.create(:user, :admin))
+    visit "/"
 
     click_link 'New Project'
     fill_in 'Name', with: 'vim'
@@ -20,8 +20,8 @@ feature "Users can create new projects" do
   end
 
   scenario 'when providing invalid attributes' do
-    visit '/'
     login_as(FactoryGirl.create(:user, :admin))
+    visit '/'
 
     click_link 'New Project'
     click_button 'Create Project'
