@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  namespace :admin do
-  get 'users/index'
-  end
-
   devise_for :users
   root 'projects#index'
 
@@ -14,6 +10,10 @@ Rails.application.routes.draw do
     root 'application#index'
 
     resources :projects, only: [:new, :create, :destroy]
-    resources :users
+    resources :users do
+      member do
+        patch :archive
+      end
+    end
   end
 end
