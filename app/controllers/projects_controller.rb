@@ -6,6 +6,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    authorize @project
   end
 
   def edit

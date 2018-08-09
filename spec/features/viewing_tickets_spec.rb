@@ -4,13 +4,13 @@ feature "Users can view tickets" do
   scenario "with valid attributes" do
     author = create(:user)
     login_as(author)
-
     neovim = create(:project, name: "neovim")
+    assign_role!(author, :viewer, neovim)
+    ie = create(:project, name: "ie")
+    assign_role!(author, :viewer, ie)
     create(:ticket, project: neovim, author: author,
                                 name: 'Make the codebase better',
                                 description: 'Refactor the monolith.')
-
-    ie = create(:project, name: "ie")
     create(:ticket, project: ie, author: author,
                                 name: "Standards compliance",
                                 description: "Isn't a joke.")

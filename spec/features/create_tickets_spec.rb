@@ -5,6 +5,7 @@ feature "Users can create new tickets" do
     user = create(:user)
     login_as(user)
     project = create(:project, name: "Internet Explorer")
+    assign_role!(user, :editor, project)
 
     visit project_path(project)
     click_link 'New Ticket'
@@ -19,7 +20,10 @@ feature "Users can create new tickets" do
   end
 
   scenario 'when providing invalid attributes' do
+    user = create(:user)
+    login_as(user)
     project = create(:project, name: "Internet Explorer")
+    assign_role!(user, :editor, project)
 
     visit project_path(project)
     click_link 'New Ticket'
@@ -31,7 +35,10 @@ feature "Users can create new tickets" do
   end
 
   scenario 'with an invalid description' do
+    user = create(:user)
+    login_as(user)
     project = create(:project, name: "Internet Explorer")
+    assign_role!(user, :editor, project)
 
     visit project_path(project)
     click_link 'New Ticket'

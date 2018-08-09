@@ -124,6 +124,8 @@ GEM
       byebug (~> 10.0)
       pry (~> 0.10)
     public_suffix (3.0.2)
+    pundit (0.3.0)
+      activesupport (>= 3.0.0)
     rack (1.6.10)
     rack-contrib (1.8.0)
       rack (~> 1.4)
@@ -235,12 +237,13 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise (~> 3.4.1)
   factory_girl_rails (~> 4.5)
-  faker
+  faker (~> 1.9.1)
   font-awesome-rails (~> 4.3)
   jbuilder (~> 2.0)
   jquery-rails
   meta_request
   pry-byebug
+  pundit (~> 0.3.0)
   rails (= 4.2.5)
   rake
   rspec-rails (~> 3.5, >= 3.5.2)
