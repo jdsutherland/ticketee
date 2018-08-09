@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature "Admins can edit new users" do
   scenario "with valid details" do
-    user = FactoryGirl.create(:user)
-    login_as(FactoryGirl.create(:user, :admin))
+    user = create(:user)
+    login_as(create(:user, :admin))
 
     visit admin_user_path(user)
     click_link 'Edit User'
@@ -16,8 +16,8 @@ feature "Admins can edit new users" do
   end
 
   scenario "when toggling a user's admin ability" do
-    user = FactoryGirl.create(:user)
-    login_as(FactoryGirl.create(:user, :admin))
+    user = create(:user)
+    login_as(create(:user, :admin))
 
     visit admin_user_path(user)
     click_link 'Edit User'

@@ -2,7 +2,10 @@ require 'rails_helper'
 
 feature "Users can view projects" do
   scenario 'with the project details' do
-    project = FactoryGirl.create(:project, name: 'vim')
+    user = create(:user)
+    project = create(:project, name: 'vim')
+    login_as(user)
+    assign_role!(user, :viewer, project)
 
     visit '/'
     click_link 'vim'

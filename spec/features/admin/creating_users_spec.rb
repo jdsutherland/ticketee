@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Admins can create new users" do
   scenario "with valid credentials" do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(create(:user, :admin))
     visit "/"
 
     click_link 'Admin'
@@ -16,7 +16,7 @@ feature "Admins can create new users" do
   end
 
   scenario 'when the new user is an admin' do
-    login_as(FactoryGirl.create(:user, :admin))
+    login_as(create(:user, :admin))
     visit "/"
 
     click_link 'Admin'

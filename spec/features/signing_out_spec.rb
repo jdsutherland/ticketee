@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Users can sign out" do
   scenario do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     login_as(user)
 
     visit '/'

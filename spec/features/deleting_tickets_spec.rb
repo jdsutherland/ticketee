@@ -2,10 +2,10 @@ require 'rails_helper'
 
 feature "Users can delete a ticket" do
   scenario 'with valid attributes' do
-    author = FactoryGirl.create(:user)
+    author = create(:user)
     login_as(author)
-    project = FactoryGirl.create(:project)
-    ticket = FactoryGirl.create(:ticket, project: project, author: author)
+    project = create(:project)
+    ticket = create(:ticket, project: project, author: author)
 
     visit project_ticket_path(project, ticket)
     click_link 'Delete Ticket'

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature "Admins can archive users" do
   scenario "successfully" do
-    user = FactoryGirl.create(:user)
-    login_as(FactoryGirl.create(:user, :admin))
+    user = create(:user)
+    login_as(create(:user, :admin))
 
     visit admin_user_path(user)
     click_link 'Archive User'
@@ -13,7 +13,7 @@ feature "Admins can archive users" do
   end
 
   scenario "but cannot archive themselves" do
-    admin = FactoryGirl.create(:user, :admin)
+    admin = create(:user, :admin)
     login_as(admin)
 
     visit admin_user_path(admin)

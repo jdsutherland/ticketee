@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature "Users can create new tickets" do
   scenario "with valid attributes" do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     login_as(user)
-    project = FactoryGirl.create(:project, name: "Internet Explorer")
+    project = create(:project, name: "Internet Explorer")
 
     visit project_path(project)
     click_link 'New Ticket'
@@ -19,7 +19,7 @@ feature "Users can create new tickets" do
   end
 
   scenario 'when providing invalid attributes' do
-    project = FactoryGirl.create(:project, name: "Internet Explorer")
+    project = create(:project, name: "Internet Explorer")
 
     visit project_path(project)
     click_link 'New Ticket'
@@ -31,7 +31,7 @@ feature "Users can create new tickets" do
   end
 
   scenario 'with an invalid description' do
-    project = FactoryGirl.create(:project, name: "Internet Explorer")
+    project = create(:project, name: "Internet Explorer")
 
     visit project_path(project)
     click_link 'New Ticket'

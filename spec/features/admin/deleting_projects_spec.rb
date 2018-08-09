@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature "Users can delete a project" do
   scenario 'with valid attributes' do
-    login_as(FactoryGirl.create(:user, :admin))
-    FactoryGirl.create(:project, name: 'vim')
+    login_as(create(:user, :admin))
+    create(:project, name: 'vim')
 
     visit '/'
     click_link 'vim'

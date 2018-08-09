@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Users can sign in" do
   scenario 'when providing valid details' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
 
     visit '/'
     click_link 'Sign in'
@@ -15,7 +15,7 @@ feature "Users can sign in" do
   end
 
   scenario 'unless they are archived' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     user.archive
 
     visit '/'
