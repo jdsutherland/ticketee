@@ -1,6 +1,34 @@
 require 'rails_helper'
 
 describe ProjectPolicy do
+  context "policy_scope" do
+    it "is empty for anonymous users" do
+      expect(Pundit.policy_scope(nil, Project)).to be_empty
+    end
+
+    it "includes projects a user is allowed to view" do
+      user = create(:user)
+      project = create(:project)
+      assign_role!(user, :viewer, project)
+
+      expect(Pundit.policy_scope(user, Project)).to include(project)
+    end
+
+    it "doesn't include a projects it isn't allowed to view" do
+      user = create(:user)
+
+      expect(Pundit.policy_scope(user, Project)).to be_empty
+    end
+
+    it "returns all projects for admins" do
+      user = create(:user)
+      project = create(:project)
+      user.admin = true
+
+      expect(Pundit.policy_scope(user, Project)).to include(project)
+    end
+  end
+
   permissions :show? do
     it 'blocks anonymous users' do
       user = create(:user)
