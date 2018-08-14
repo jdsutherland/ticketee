@@ -43,6 +43,18 @@ feature "Users can only see appropriate links" do
 
       expect(page).to_not have_link "New Ticket"
     end
+
+    scenario 'cannot see the Edit Ticket link' do
+      user = create(:user)
+      login_as(user)
+      project = create(:project)
+      ticket = create(:ticket, project: project, author: user)
+      assign_role!(user, :viewer, project)
+
+      visit project_ticket_path(project, ticket)
+
+      expect(page).to_not have_link "Edit Ticket"
+    end
   end
 
   context 'admin users' do
@@ -60,6 +72,18 @@ feature "Users can only see appropriate links" do
       visit project_path(project)
 
       expect(page).to have_link "New Ticket"
+    end
+
+    scenario 'can see the Edit Ticket link' do
+      user = create(:user, :admin)
+      login_as(user)
+      project = create(:project)
+      ticket = create(:ticket, project: project, author: user)
+      assign_role!(user, :viewer, project)
+
+      visit project_ticket_path(project, ticket)
+
+      expect(page).to have_link "Edit Ticket"
     end
 
     scenario 'can see the Edit Project link' do
