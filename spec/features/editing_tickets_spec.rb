@@ -5,6 +5,7 @@ feature "Users can edit existing tickets" do
     author = create(:user)
     login_as(author)
     project = create(:project)
+    assign_role!(author, :viewer, project)
     ticket = create(:ticket, project: project, author: author)
 
 
@@ -24,6 +25,7 @@ feature "Users can edit existing tickets" do
     author = create(:user)
     login_as(author)
     project = create(:project)
+    assign_role!(author, :viewer, project)
     ticket = create(:ticket, project: project, author: author)
 
     visit project_ticket_path(project, ticket)
