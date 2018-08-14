@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :tickets
+  has_many :roles
 
   scope :excluding_archived, -> { where(archived_at: nil) }
 
@@ -20,6 +21,10 @@ class User < ActiveRecord::Base
 
   def inactive_message
     !archived? ? super : :archived
+  end
+
+  def role_on(project)
+    roles.find_by(project_id: project).try(:name)
   end
 
   private
