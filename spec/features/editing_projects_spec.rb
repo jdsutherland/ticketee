@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-feature "Users can edit existing projects" do
+feature "Project managers can edit existing projects" do
   scenario 'with valid attributes' do
     user = create(:user)
     login_as(user)
     project = create(:project, name: "vim")
-    assign_role!(user, :editor, project)
+    assign_role!(user, :manager, project)
 
     visit '/'
     click_link 'vim'
@@ -21,7 +21,7 @@ feature "Users can edit existing projects" do
     user = create(:user)
     login_as(user)
     project = create(:project, name: "vim")
-    assign_role!(user, :editor, project)
+    assign_role!(user, :manager, project)
 
     visit '/'
     click_link 'vim'
