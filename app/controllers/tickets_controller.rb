@@ -7,6 +7,10 @@ class TicketsController < ApplicationController
     authorize @ticket, :create?
   end
 
+  def show
+    authorize @ticket
+  end
+
   def create
     @ticket = @project.tickets.build(ticket_params)
     # TODO: this blows up if not logged in - use 'Null Object'
@@ -20,9 +24,6 @@ class TicketsController < ApplicationController
       flash.now[:alert] = "Ticket has not been created."
       render 'new'
     end
-  end
-
-  def show
   end
 
   def edit
