@@ -26,6 +26,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate', '~> 2.7'
   gem 'meta_request'
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0'
