@@ -68,5 +68,26 @@ feature "Users can create new tickets" do
       expect(page).to have_content "speed.txt"
     end
   end
+
+  scenario "persisting file uploads across form displays" do
+    user = create(:user)
+    login_as(user)
+    project = create(:project, name: "Internet Explorer")
+    assign_role!(user, :editor, project)
+    visit project_path(project)
+    click_link 'New Ticket'
+
+    attach_file "File", "spec/fixtures/speed.txt"
+    click_button 'Create Ticket'
+
+    # after validation errors, fix and try valid
+    fill_in 'Name', with: 'Add documentation for speed tag'
+    fill_in 'Description', with: 'The blink tag has a speed attribute'
+    click_button 'Create Ticket'
+
+    within('#ticket .attachment') do
+      expect(page).to have_content "speed.txt"
+    end
+  end
 end
 
