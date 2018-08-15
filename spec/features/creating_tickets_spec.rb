@@ -50,7 +50,7 @@ feature "Users can create new tickets" do
     expect(page).to have_content "Description is too short"
   end
 
-  scenario "with an attachment" do
+  scenario "with multiple attachments" do
     user = create(:user)
     login_as(user)
     project = create(:project, name: "Internet Explorer")
@@ -60,12 +60,17 @@ feature "Users can create new tickets" do
     click_link 'New Ticket'
     fill_in 'Name', with: 'Add documentation for speed tag'
     fill_in 'Description', with: 'The blink tag has a speed attribute'
-    attach_file "File", "spec/fixtures/speed.txt"
+
+    attach_file "File #1", "spec/fixtures/speed.txt"
+    attach_file "File #2", "spec/fixtures/spin.txt"
+    attach_file "File #3", "spec/fixtures/gradient.txt"
     click_button 'Create Ticket'
 
     expect(page).to have_content "Ticket has been successfully created."
     within('#ticket .attachment') do
       expect(page).to have_content "speed.txt"
+      expect(page).to have_content "spin.txt"
+      expect(page).to have_content "gradient.txt"
     end
   end
 
@@ -77,7 +82,7 @@ feature "Users can create new tickets" do
     visit project_path(project)
     click_link 'New Ticket'
 
-    attach_file "File", "spec/fixtures/speed.txt"
+    attach_file "File #1", "spec/fixtures/speed.txt"
     click_button 'Create Ticket'
 
     # after validation errors, fix and try valid
@@ -90,4 +95,3 @@ feature "Users can create new tickets" do
     end
   end
 end
-
