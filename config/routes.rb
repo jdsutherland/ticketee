@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   devise_for :users
   root 'projects#index'
 
+  resources :attachments, only: [:show]
+
   resources :projects, only: [:index, :show, :edit, :update] do
     resources :tickets
   end
