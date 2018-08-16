@@ -10,7 +10,7 @@ class TicketsController < ApplicationController
 
   def show
     authorize @ticket
-    @comment = @ticket.comments.new
+    @comment = @ticket.comments.new(state_id: @ticket.state_id)
   end
 
   def create
