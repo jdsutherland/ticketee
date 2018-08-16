@@ -67,6 +67,18 @@ feature "Users can only see appropriate links" do
 
       expect(page).to_not have_link "Delete Ticket"
     end
+
+    scenario "cannot see the New Comment form" do
+      user = create(:user)
+      login_as(user)
+      project = create(:project)
+      ticket = create(:ticket, project: project, author: user)
+      assign_role!(user, :viewer, project)
+
+      visit project_ticket_path(project, ticket)
+
+      expect(page).to_not have_heading "New Comment"
+    end
   end
 
   context 'admin users' do
@@ -125,6 +137,17 @@ feature "Users can only see appropriate links" do
       visit project_path(project)
 
       expect(page).to have_link "Delete Project"
+    end
+
+    scenario "can see the New Comment form" do
+      user = create(:user)
+      login_as(create(:user, :admin))
+      project = create(:project)
+      ticket = create(:ticket, project: project, author: user)
+
+      visit project_ticket_path(project, ticket)
+
+      expect(page).to have_heading "New Comment"
     end
   end
 end

@@ -20,6 +20,7 @@
 #
 
 class User < ActiveRecord::Base
+  has_many :comments
   has_many :tickets
   has_many :roles
 

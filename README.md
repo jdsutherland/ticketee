@@ -14,6 +14,8 @@ Ticketee is a ticket-tracking application to track company projects
 1. Add comments to tickets
 1. Email notification
 1. File uploading
+1. Ticket comments
+1. Tracking Ticket state
 
 ## Roles - a User has a specific Role on a Project
 - used to determine what actions a user can take on a project/ticket
@@ -25,3 +27,17 @@ Ticketee is a ticket-tracking application to track company projects
 * Viewer  - read project but not edit.
 * Editor  - read project and create/update tickets on the project.
 * Manager - read project, manage tickets, and administrate some facets of the project itself, including editing the project’s details. They won’t be able to delete the project, though - that’s reserved for admins of the site.
+
+## Ticket comments
+- Tickets will have comments (only auth'd can comment)
+
+## Ticket State - tickets have a workflow revolving around state changes
+- an Admin can add states (but not delete)
+  - states don't get deleted once created & used on a Ticket (but can be 'archived')
+### States (changed via drop-down list):
+* new (default)
+* open => 'when a developer decides to work on it'
+* resolved
+* 'need more info'
+* duplicate
+* invalid
