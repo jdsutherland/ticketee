@@ -9,11 +9,13 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  author_id   :integer
+#  state_id    :integer
 #
 
 class Ticket < ActiveRecord::Base
-  belongs_to :project
   belongs_to :author, class_name: "User"
+  belongs_to :project
+  belongs_to :state
 
   has_many :comments, dependent: :destroy
   has_many :attachments, dependent: :destroy

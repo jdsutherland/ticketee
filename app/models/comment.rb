@@ -1,4 +1,18 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id         :integer          not null, primary key
+#  text       :string
+#  ticket_id  :integer
+#  author_id  :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  state_id   :integer
+#
+
 class Comment < ActiveRecord::Base
+  belongs_to :state
   belongs_to :ticket
   belongs_to :author, class_name: "User"
 
@@ -7,4 +21,13 @@ class Comment < ActiveRecord::Base
   delegate :project, to: :ticket
 
   scope :persisted, -> { where.not(id: nil) }
+
+  after_create :set_ticket_state
+
+  private
+
+  def set_ticket_state
+    ticket.state = state
+    ticket.save!
+  end
 end

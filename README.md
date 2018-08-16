@@ -34,6 +34,8 @@ Ticketee is a ticket-tracking application to track company projects
 ## Ticket State - tickets have a workflow revolving around state changes
 - an Admin can add states (but not delete)
   - states don't get deleted once created & used on a Ticket (but can be 'archived')
+- has_a :comment => track that a comment ch. the state
+- has_a :ticket => track cur. state of ticket
 ### States (changed via drop-down list):
 * new (default)
 * open => 'when a developer decides to work on it'
