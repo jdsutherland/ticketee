@@ -6,6 +6,7 @@ feature "Users can create new tickets" do
     login_as(user)
     project = create(:project, name: "Internet Explorer")
     assign_role!(user, :editor, project)
+    state = create(:state, name: 'New', default: true)
 
     visit project_path(project)
     click_link 'New Ticket'
@@ -14,6 +15,7 @@ feature "Users can create new tickets" do
     click_button 'Create Ticket'
 
     expect(page).to have_content "Ticket has been successfully created."
+    expect(page).to have_content "State: New"
     within('#ticket') do
       expect(page).to have_content "Author: #{user.email}"
     end
