@@ -52,4 +52,16 @@ feature "Users can comment on tickets" do
       expect(page).to have_content "state changed to Open"
     end
   end
+
+  scenario "but cannot change the state without permission" do
+    author = create(:user)
+    login_as(author)
+    project = create(:project)
+    assign_role!(author, :editor, project)
+    ticket = create(:ticket, project: project, author: author)
+
+    visit project_ticket_path(project, ticket)
+
+    expect(page).not_to have_select 'State'
+  end
 end

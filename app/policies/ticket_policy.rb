@@ -21,6 +21,10 @@ class TicketPolicy < ApplicationPolicy
     user.try(:admin?) || record.project.has_manager?(user)
   end
 
+  def change_state?
+    destroy?
+  end
+
   private
 
   def project_editor_created_ticket?
