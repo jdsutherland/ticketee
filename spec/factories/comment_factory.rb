@@ -2,13 +2,14 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  text       :string
-#  ticket_id  :integer
-#  author_id  :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  state_id   :integer
+#  id                :integer          not null, primary key
+#  text              :string
+#  ticket_id         :integer
+#  author_id         :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  state_id          :integer
+#  previous_state_id :integer
 #
 
 FactoryGirl.define do

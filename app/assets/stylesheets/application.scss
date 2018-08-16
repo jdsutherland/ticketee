@@ -63,6 +63,10 @@ a.delete {
   }
 }
 
+#tickets li, #states li {
+  padding-bottom: 10px;
+}
+
 .alert-notice {
   @extend .alert-success;
 }
