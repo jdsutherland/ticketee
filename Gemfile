@@ -10,6 +10,7 @@ gem 'pundit', "~> 0.3.0"
 gem 'rails', '4.2.5'
 gem 'rake'
 gem 'sass-rails', '~> 5.0'
+gem 'searcher', github: "radar/searcher"
 gem 'simple_form', '~> 3.1.0'
 gem 'sqlite3'
 gem 'uglifier', '>= 1.3.0'
