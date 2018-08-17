@@ -101,7 +101,7 @@ feature "Users can create new tickets" do
     user = create(:user)
     login_as(user)
     project = create(:project, name: "Internet Explorer")
-    assign_role!(user, :editor, project)
+    assign_role!(user, :manager, project)
 
     visit project_path(project)
     click_link 'New Ticket'

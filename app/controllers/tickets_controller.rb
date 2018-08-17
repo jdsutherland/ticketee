@@ -14,7 +14,8 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = @project.tickets.build(ticket_params)
+    @ticket = @project.tickets.new
+    @ticket.attributes = sanitized_params
     # TODO: this blows up if not logged in - use 'Null Object'
     @ticket.author = current_user
     authorize @ticket
@@ -53,6 +54,14 @@ class TicketsController < ApplicationController
   end
 
   private
+
+  def sanitized_params
+    whitelisted_params = ticket_params
+    unless policy(@ticket).tag?
+      whitelisted_params.delete(:tag_names)
+    end
+    whitelisted_params
+  end
 
   def set_ticket
     @ticket = @project.tickets.find(params[:id])

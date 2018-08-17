@@ -25,6 +25,10 @@ class TicketPolicy < ApplicationPolicy
     destroy?
   end
 
+  def tag?
+    destroy?
+  end
+
   private
 
   def project_editor_created_ticket?
