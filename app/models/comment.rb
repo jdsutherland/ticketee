@@ -26,6 +26,9 @@ class Comment < ActiveRecord::Base
 
   before_create :set_previous_state
   after_create :set_ticket_state
+  after_create :associate_tags_with_ticket
+
+  attr_accessor :tag_names
 
   private
 
@@ -36,5 +39,13 @@ class Comment < ActiveRecord::Base
   def set_ticket_state
     ticket.state = state
     ticket.save!
+  end
+
+  def associate_tags_with_ticket
+    if tag_names
+      tag_names.split.each do |name|
+        ticket.tags << Tag.find_or_initialize_by(name: name)
+      end
+    end
   end
 end
