@@ -46,4 +46,26 @@ feature "Users can search for tags matching specific criteria" do
       expect(page).not_to have_link 'Create ramrod'
     end
   end
+
+  scenario "when clicking on a tag" do
+    author = create(:user)
+    login_as(author)
+    project = create(:project)
+    assign_role!(author, :manager, project)
+    ticket_1 = create(:ticket, name: 'Create doodad',
+                               project: project, author: author,
+                               tag_names: 'iteration_1')
+    ticket_2 = create(:ticket, name: 'Create ramrod',
+                               project: project, author: author,
+                               tag_names: 'iteration_2')
+
+    visit project_path(project)
+    click_link 'Create doodad'
+    click_link 'iteration_1'
+
+    within('#tickets') do
+      expect(page).to have_link 'Create doodad'
+      expect(page).not_to have_link 'Create ramrod'
+    end
+  end
 end
