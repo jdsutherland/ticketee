@@ -10,6 +10,11 @@ Rails.application.routes.draw do
 
   resources :tickets, only: [] do
     resources :comments, only: [:create]
+    resources :tags, only: [] do
+      member do
+        delete :remove
+      end
+    end
   end
 
   namespace :admin do
