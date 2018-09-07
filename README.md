@@ -55,3 +55,12 @@ Ticketee is a ticket-tracking application to track company projects
 * When a user clicks on a tag, nav to page showing all tickets with that particular tag => tag_ticket_path
 * req auth
 
+## Sending Emails
+2 related features:
+* Automatically subscribe a user to a 'watchers list' when the user creates a ticket
+  - Every time this ticket is updates, the creator of the ticket should get an email
+* Allow user to add/remove themselves from the 'watchers list' for a given ticket
+- All users on watchers list will be notified via email when a comment is posted on ticket => includes: comment, state changes
+- Commentor will be auto subscribed
+- Can toggle subscribe via ticket page
+Email contains: name of user who updated, comment text, ticket url
