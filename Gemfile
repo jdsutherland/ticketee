@@ -26,13 +26,13 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'spring'
-  gem 'sqlite3'
 end
 
 group :development do
   gem 'annotate', '~> 2.7'
   gem 'meta_request'
   gem 'pry-byebug'
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
 end
 
