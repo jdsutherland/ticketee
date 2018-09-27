@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20180907074511) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attachments", force: :cascade do |t|
     t.string   "file"
     t.integer  "ticket_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "attachments", ["ticket_id"], name: "index_attachments_on_ticket_id"
+  add_index "attachments", ["ticket_id"], name: "index_attachments_on_ticket_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "text"
@@ -32,9 +35,9 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.integer  "previous_state_id"
   end
 
-  add_index "comments", ["author_id"], name: "index_comments_on_author_id"
-  add_index "comments", ["previous_state_id"], name: "index_comments_on_previous_state_id"
-  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id"
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
+  add_index "comments", ["previous_state_id"], name: "index_comments_on_previous_state_id", using: :btree
+  add_index "comments", ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.string   "name"
@@ -51,8 +54,8 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "roles", ["project_id"], name: "index_roles_on_project_id"
-  add_index "roles", ["user_id"], name: "index_roles_on_user_id"
+  add_index "roles", ["project_id"], name: "index_roles_on_project_id", using: :btree
+  add_index "roles", ["user_id"], name: "index_roles_on_user_id", using: :btree
 
   create_table "states", force: :cascade do |t|
     t.string  "name"
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.integer "ticket_id", null: false
   end
 
-  add_index "tags_tickets", ["tag_id", "ticket_id"], name: "index_tags_tickets_on_tag_id_and_ticket_id"
-  add_index "tags_tickets", ["ticket_id", "tag_id"], name: "index_tags_tickets_on_ticket_id_and_tag_id"
+  add_index "tags_tickets", ["tag_id", "ticket_id"], name: "index_tags_tickets_on_tag_id_and_ticket_id", using: :btree
+  add_index "tags_tickets", ["ticket_id", "tag_id"], name: "index_tags_tickets_on_ticket_id_and_tag_id", using: :btree
 
   create_table "tickets", force: :cascade do |t|
     t.string   "name"
@@ -82,9 +85,9 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.integer  "state_id"
   end
 
-  add_index "tickets", ["author_id"], name: "index_tickets_on_author_id"
-  add_index "tickets", ["project_id"], name: "index_tickets_on_project_id"
-  add_index "tickets", ["state_id"], name: "index_tickets_on_state_id"
+  add_index "tickets", ["author_id"], name: "index_tickets_on_author_id", using: :btree
+  add_index "tickets", ["project_id"], name: "index_tickets_on_project_id", using: :btree
+  add_index "tickets", ["state_id"], name: "index_tickets_on_state_id", using: :btree
 
   create_table "tickets_watchers", id: false, force: :cascade do |t|
     t.integer "ticket_id", null: false
@@ -108,7 +111,7 @@ ActiveRecord::Schema.define(version: 20180907074511) do
     t.datetime "archived_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

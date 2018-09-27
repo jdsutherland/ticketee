@@ -6,19 +6,19 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'devise', '~> 3.4.1'
 gem 'faker', '~> 1.9.1'
 gem 'font-awesome-rails', '~> 4.3'
+gem 'jbuilder', '~> 2.0'
+gem 'jquery-rails'
+gem 'pg', '~> 0.15'
 gem 'pundit', "~> 0.3.0"
 gem 'rails', '4.2.5'
 gem 'rake'
 gem 'sass-rails', '~> 5.0'
+gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'searcher', github: "radar/searcher"
 gem 'simple_form', '~> 3.1.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'jbuilder', '~> 2.0'
-gem 'jquery-rails'
-gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
@@ -32,7 +32,6 @@ group :development do
   gem 'annotate', '~> 2.7'
   gem 'meta_request'
   gem 'pry-byebug'
-  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
 end
 
