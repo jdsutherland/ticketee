@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'active_model_serializers', '~> 0.9.3'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'carrierwave', "~> 0.10.0"
 gem 'coffee-rails', '~> 4.1.0'
