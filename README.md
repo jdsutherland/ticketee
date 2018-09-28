@@ -18,6 +18,7 @@ Ticketee is a ticket-tracking application to track company projects
 1. Tracking Ticket state
 1. Tags on tickets
 1. Search tickets (by: state|tag|both)
+1. API
 
 ## Roles - a User has a specific Role on a Project
 - used to determine what actions a user can take on a project/ticket
@@ -64,3 +65,8 @@ Ticketee is a ticket-tracking application to track company projects
 - Commentor will be auto subscribed
 - Can toggle subscribe via ticket page
 Email contains: name of user who updated, comment text, ticket url
+
+## API
+* Add basic Tickets API
+TODO:
+The next step would be to implement other actions of this API. As an example, you could allow users to create new tickets for a project and allow them to update tickets. You could also build an entirely new set of API endpoints for projects, and one for users that only admins could touch.
