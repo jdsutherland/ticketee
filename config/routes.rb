@@ -1,6 +1,10 @@
+require 'heartbeat/application'
+
 Rails.application.routes.draw do
   devise_for :users
   root 'projects#index'
+
+  mount Heartbeat::Application, at: '/heartbeat'
 
   resources :attachments, only: [:show, :new]
 
